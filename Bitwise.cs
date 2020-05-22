@@ -21,10 +21,21 @@ namespace BitwiseVisualizer
             NumberBinary = ConvertToBinary(NumberDecimal);
         }
 
+        // Constructor with an extra parameter for desired string length.
+        public Bitwise(uint i, int binaryLength)
+        {
+            NumberDecimal = i;
+            NumberBinary = ConvertToBinary(NumberDecimal);
+            NumberBinary = InsertLeadingZeros(NumberBinary, binaryLength-NumberBinary.Length);
+        }
+
+
+
 
         /* Converts given positive integer to binary.
-         * Adds leading zeros to always have at least 8-bit strings. */
-        public static string ConvertToBinary(uint decim)
+         * Adds leading zeros to always have at least 8-bit strings.
+         * The length of the string can also be specified. */
+        public static string ConvertToBinary(uint decim, int bitLength = 8)
         {
             string bString = "";
 
@@ -44,11 +55,11 @@ namespace BitwiseVisualizer
             }
 
             // Insert leading zeros to get at least 8 bits
-            for (int i = bString.Length; i < 8; i++)
+            if (bString.Length < bitLength)
             {
-                bString = bString.Insert(0, "0");
+                bString = InsertLeadingZeros(bString, bitLength - bString.Length);
             }
-
+            
             return bString;
         }
 
@@ -180,8 +191,8 @@ namespace BitwiseVisualizer
                 return null;
             }
 
-            // Otherwise return a new Bitwise object
-            return new Bitwise((uint)newDecimal);
+            // Otherwise return a new Bitwise object of the same size as the operands
+            return new Bitwise((uint)newDecimal, len1);
 
         }
 
@@ -208,9 +219,10 @@ namespace BitwiseVisualizer
         public Bitwise BitwiseNot()
         {
             string newBinaryString = "";
+            int len = NumberBinary.Length;
 
             // Reverse bits
-            for (int i = 0; i < NumberBinary.Length; i++)
+            for (int i = 0; i < len; i++)
             {
                 if (NumberBinary[i] == '1')
                     newBinaryString += '0';
@@ -229,20 +241,21 @@ namespace BitwiseVisualizer
                 return null;
             }
 
-            return new Bitwise((uint)newDecimal);
+            return new Bitwise((uint)newDecimal, len);
         }
 
         /* Performs the bitwise LEFT-SHIFT operation and returns the new object */
         public Bitwise BitwiseShiftLeft(int steps)
         {
             string newBinaryString = "";
+            int len = NumberBinary.Length;
 
             // Make sure steps don't exceed binary string length
-            if (steps > NumberBinary.Length)
-                steps = NumberBinary.Length;
+            if (steps > len)
+                steps = len;
 
             // Shift to new string
-            for (int i = steps; i < NumberBinary.Length; i++)
+            for (int i = steps; i < len; i++)
             {
                 newBinaryString += NumberBinary[i];
             }
@@ -264,17 +277,18 @@ namespace BitwiseVisualizer
                 return null;
             }
 
-            return new Bitwise((uint)newDecimal);
+            return new Bitwise((uint)newDecimal, len);
         }
 
         /* Performs the bitwise RIGHT-SHIFT operation and returns the new object */
         public Bitwise BitwiseShiftRight(int steps)
         {
             string newBinaryString = "";
+            int len = NumberBinary.Length;
 
             // Make sure steps don't exceed binary string length
-            if (steps > NumberBinary.Length)
-                steps = NumberBinary.Length;
+            if (steps > len)
+                steps = len;
 
 
             // Add zeros - for visualization purposes
@@ -284,7 +298,7 @@ namespace BitwiseVisualizer
             }
 
             // Shift the rest
-            for (int i = 0; i < NumberBinary.Length-steps; i++)
+            for (int i = 0; i < len-steps; i++)
             {
                 newBinaryString += NumberBinary[i];
             }
@@ -299,7 +313,7 @@ namespace BitwiseVisualizer
                 return null;
             }
 
-            return new Bitwise((uint)newDecimal);
+            return new Bitwise((uint)newDecimal, len);
         }
 
         /* Prints the set operators' (AND, OR, XOR) results for the current and given object. 
