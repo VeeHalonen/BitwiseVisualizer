@@ -62,5 +62,5 @@ XOR
 
 Press Enter to Continue
 ```
-<p>After the user presses enter, the screen gets cleared and the user is returned to the beginning of the program.</p>
+<p>After the user presses Enter, the screen gets cleared and the user is returned to the beginning of the program.</p>
 <p>Typing "Q", "q", "quit", "QUIT", or "Quit" instead of a number exits the program.</p>
