@@ -4,9 +4,9 @@
 
 <p>The <b>Bitwise class</b> stores a single non-negative integer value and a text string representing the corresponding binary number. Objects are initialized with the integer representation of the number, which is then converted to binary in the constructor.</p>
 
-<p>The class has static methods to convert any given value from binary to decimal or vice versa. Meanwhile, the class methods include the bitwise operators AND, OR, XOR, NOT, LEFT SHIFT, and RIGHT SHIFT. Each of these methods returns a new object, as opposed to modifying the current one. There are also print methods for demonstrating the effects of each operation on the calling object (and a second object in the case of the set operations). These utilize the "infamous" Thread.Sleep method in order to print the results of the different operations one by one in a timed fashion. The ToString method is also overridden.</p>
+<p>The class has static methods to convert any given value from binary to decimal or vice versa. Meanwhile, the class methods include the bitwise operators AND, OR, XOR, NOT, LEFT SHIFT, and RIGHT SHIFT. Each of these methods returns a new object, as opposed to modifying the current one. There are also print methods for demonstrating the effects of each operation on the calling object. These utilize the "infamous" Thread.Sleep method in order to print the results of the different operations one by one in a timed fashion. The ToString method is also overridden.</p>
 
-<p>The <b>Main class</b> is a simple example program demonstrating the Bitwise class. When launched, the program asks the user for a number. This number is then converted into a Bitwise object, and the non-set operations NOT, LEFT SHIFT, and RIGHT SHIFT are immediately demonstrated using one of the timed print methods described above.</p>
+<p>The <b>Main class</b> is a simple example program demonstrating the Bitwise class. When launched, the program asks the user for a number. This number is then converted into a Bitwise object, and the operations NOT, LEFT SHIFT, and RIGHT SHIFT are immediately demonstrated using one of the timed print methods described above.</p>
 
 ```
 *** Welcome to Bitwise Visualizer! ***
